@@ -1,4 +1,28 @@
 Emailer::Application.routes.draw do
+  
+#resources :patients, :mails
+get '/patient/:id' => 'patients#show'
+get '/patients' => 'patients#index'
+ # get "mail/index"
+
+ # get "mail/show"
+
+ # get "mail/destroy"
+
+ # get "mail/create"
+
+ # get "mail/new"
+#get '/patients/:id' =>'patient#show'
+#get "patients/index"
+
+#get "patient/show"
+
+#get "patients/create"
+
+#get "patients/new"
+
+#get "patients/destroy"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

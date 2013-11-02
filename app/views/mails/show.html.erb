@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @doctor.name %>
+</p>
+<p>
+  <b>Title:</b>
+  <%= @doctor.title %>
+</p>
+
+<p>
+<img src="/images/doctors/<%=@doctor[:id]%>.jpg" height="80" width="60"></img>
+</p>
+<p>
+  <b>URLs:</b>
+  <%#=@doctor.urls%>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @doctor.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_doctor_path(@doctor) %> |
+<%= link_to 'Back', admin_doctors_path %>

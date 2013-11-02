@@ -1,0 +1,151 @@
+<style>	
+	.outer_table {
+		width:980px;
+
+	}
+tr {
+	display: block;
+	
+}
+td {
+		display:inline-block;
+		width:295px;
+		height:200px;		
+		padding:15px 15px 0px 11px;
+		border-right:1px dashed lightgrey;
+		
+		
+	}
+	
+		.tdContent {
+			padding:10px 10px 0px 10px;
+			margin-bottom: 6px;
+			border: 1px solid grey;
+			display: table;
+			width: 100%;
+			height: 100%;	
+			table-layout:fixed;
+			position: relative;
+			box-sizing: border-box; /* Opera/IE 8+ */
+			-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+		    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+   
+
+}
+.doc_img {
+	 vertical-align:top;
+     display: table-cell;
+     width: 80px;			/*default width of image ---------------*/
+}
+.tdText {
+	display: table-cell;
+	overflow: hidden;
+	height: 180px;
+	font-size:12px;
+	font-family:arial, helvetica, sans-serif;
+	text-decoration:none;
+	 color:#4d4d4d;
+} 
+
+.tdText table {
+	width: 100%;
+	margin-left:10px;
+}
+
+.tdText td {
+	width:108px;
+	height: auto;
+	margin-bottom: 4px;
+	margin-top: 0px;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    text-align:left;
+}
+.tdText td:first-child{
+	width:60px;
+}
+
+.tdText td:first-child:last-child {
+	width:auto;
+}
+.outer_table {
+	margin-top: 10px;
+}
+
+.actions input {
+
+position: absolute;
+width:150px;
+top:63px;
+height: 25px;
+margin-top: 0px;
+}
+
+.editIcon {
+position: absolute;
+top:-18px;
+right:15px;
+}
+.crossIcon {
+position: absolute;
+top:-18px;
+right:-15px;
+}
+</style>
+<% col = 0 %>
+<%= render :partial => "/admin/shared/header" %>
+<%= render :partial => "/admin/shared/tabs" %>
+<div class="team-actions">
+	<a href="/admin/academy/doctors/new"><input type="button" value="Add"/></a>
+</div>
+<table class="outer_table">
+  	<% @doctors.each do |doctor| %>
+			<%if col%3 == 0%>
+				<tr>
+			<%end%>
+		<td>
+			<div class="tdContent">
+			<div class="doc_img"><img src="/images/doctors/<%=doctor.id%>.jpg" width="80"></img></div>
+			
+			<div class="tdText">
+				<%= link_to '', [:admin, doctor], confirm: 'Are you sure?', method: :delete, class: "adminSprite crossIcon" %>
+		
+			
+			<%= link_to '', "/admin/#{@section}/doctors/#{doctor.id}/edit" , class: "adminSprite editIcon"  %> 
+				<table>
+		
+				<tr><td><b>Name:</b></td><td><%= doctor.name %></td></tr>
+				<tr><td><b>Title:</b></td><td><%= Doctor.titles[doctor.title] %></td></tr>
+				<% unless doctor.urls.blank? %>
+				<tr><td><b>URL:</b></td><td> <a href="<%= doctor.urls.first.title%>"><%= doctor.urls.first.title%></a>
+					</td></tr>
+				
+				<%end%>
+				
+				<tr><td colspan="2"><p>&nbsp</p></td></tr>
+				<tr><td colspan="2"><b>Description:</b></td></tr>
+				<tr><td colspan="2"><%=truncate(doctor.description,:length=>100) %></td></tr>
+				</table>
+
+
+			
+			</div>
+		</td>
+			
+			<% col = col + 1 %>
+			<%if col%3 == 0%>
+				</tr>
+			<%end%>
+		 
+	<% end %>
+</table>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".actions input").css({
+			left: (($(window).width()-980)/2 + (980-60-75)).toString() + "px"
+		}) ;
+		});
+
+
+</script>

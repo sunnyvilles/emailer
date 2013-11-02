@@ -34,4 +34,7 @@ Emailer::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  #temperary debugger for activeresource
+  ActiveResource::Base.logger = Logger.new(STDERR) 
 end

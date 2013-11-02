@@ -1,0 +1,19 @@
+<table>
+		<tr>
+			<th>Name</th>
+			<th>Dob</th>
+			<th>Mobile</th>
+			<th>Email</th>
+			<th>Delete</th>
+		</tr>
+
+		<% @patients.each do |patient| %>
+			<tr>
+				<td><%= patient.name %></td>
+				<td><%= patient.dob %></td>
+				<td><%= patient.mobile %></td>
+				<td><%= patient.email %></td>
+				<td><a href="/patients/<%=patient.id%>" data-confirm="Are you sure?" data-method="delete" rel="nofollow"><span class="adminSprite crossIcon"></span></a></td>
+			</tr>
+		<% end %>
+	</table>
